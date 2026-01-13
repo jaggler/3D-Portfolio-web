@@ -3,6 +3,7 @@ import {PerspectiveCamera, Ring} from "@react-three/drei";
 import HackerRoom from "../components/HackerRoom.jsx";
 import {Suspense} from "react";
 import CanvasLoader from "../components/CanvasLoader.jsx";
+import CanvasErrorBoundary from "../components/CanvasErrorBoundary.jsx";
 import {useMediaQuery} from "react-responsive";
 import {calculateSizes} from "../constants/index.js";
 import Target from "../components/Target.jsx";
@@ -32,6 +33,7 @@ const Hero = () => {
 
             <div className="w-full h-full absolute inset-0">
                 {/*<Leva  />*/}
+                <CanvasErrorBoundary>
                 <Canvas className="w-full h-full">
                     <Suspense fallback={<CanvasLoader />}>
                     <PerspectiveCamera makeDefault position={[0,0,20]} />
@@ -54,6 +56,7 @@ const Hero = () => {
                         <directionalLight position = {[10,10,10]} intensity={0.5} />
                     </Suspense>
                 </Canvas>
+                </CanvasErrorBoundary>
             </div>
             <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
                 <a href="#about" className="w-fit">
